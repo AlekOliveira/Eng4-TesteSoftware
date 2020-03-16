@@ -106,5 +106,12 @@ public class Conexao
     public Connection getConnection()
     {
         return connect;
-    }       
+    }   
+
+    public void Disconnect() {
+        try {
+        connect.close();
+        }
+        catch(Exception e){}
+    }
 }
