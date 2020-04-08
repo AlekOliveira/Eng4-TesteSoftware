@@ -21,8 +21,8 @@ public class Conexao
         boolean conectado=false;
         try 
         {
-            //Class.forName(driver); "org.postgresql.Driver");
-            String url = local+banco; //"jdbc:postgresql://localhost/"+banco;
+            //Class.forName(driver)/;//"org.postgresql.Driver");
+            String url = local+banco; //"jdbc:postgresql://localhost/"+banco;            
             connect = DriverManager.getConnection( url, usuario,senha);
             conectado=true;
         }

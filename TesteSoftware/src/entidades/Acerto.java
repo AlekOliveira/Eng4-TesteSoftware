@@ -1,5 +1,6 @@
 package entidades;
 
+import banco.Banco;
 import java.time.LocalDate;
 import banco.Conexao;
 
@@ -66,17 +67,13 @@ public class Acerto {
     }
     
     public boolean insere() {
-        String sql = "insert into Acerto (data, valor. motivo, tipo) values (#1, #2, #3, #4)";
+        String sql = "insert into Acerto (data, valor, motivo, tipo) values ('#1', #2, '#3', #4)";
         sql = sql.replace("#1", data + "");
         sql = sql.replace("#2", valor + "");
         sql = sql.replace("#3", motivo);
         sql = sql.replace("#4", tipo + "");
         
-        Conexao c = new Conexao();
-        c.conectar(sql, sql, sql, sql);
-        boolean f = c.manipular(sql);
-        c.Disconnect();
-        return f;
+        return Banco.getCon().manipular(sql);
     }
     
     public boolean altera() {

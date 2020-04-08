@@ -60,21 +60,12 @@ public class TestJakenPo {
     }*/
     
     @Test
-    @FileParameters("C:\\Users\\Alexandre\\Documents\\NetBeansProjects\\Eng4-TesteSoftware\\TesteSoftware\\test\\csvExemplo.csv")
+    @FileParameters("/home/henrique/NetBeansProjects/Eng4-TesteSoftware/TesteSoftware/test/csvExemplo.csv")
     public void T_REsultado(String s1, String s2, int res)
     {
         //tesoura, papel, 1
        JakenPo jp = new JakenPo();
        int resultado = jp.Resultado(s1, s2);
        Assert.assertEquals(res, resultado);
-        
-        
     }
-    
-  
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

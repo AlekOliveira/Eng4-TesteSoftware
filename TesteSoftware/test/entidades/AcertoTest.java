@@ -9,6 +9,8 @@ import banco.Banco;
 import banco.Conexao;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import org.junit.After;
@@ -41,8 +43,7 @@ public class AcertoTest {
     
     @Before
     public void setUp() throws SQLException {
-        if(Banco.conectar())
-            System.out.println("Conectou!");
+        Banco.conectar();
         Banco.getCon().getConnection().setAutoCommit(false);
     }
     
@@ -56,12 +57,9 @@ public class AcertoTest {
      * Test of insere method, of class Acerto.
      */
     @Test
-    @FileParameters(".csv")
-    public void testInsere(LocalDate data, double valor, boolean tipo, String motivo, boolean resultado) {
-        Acerto a = new Acerto(data,valor, tipo, motivo);
+    @FileParameters("test/entidades/acerto.csv")
+    public void testInsere(String data, double valor, boolean tipo, String motivo, boolean resultado) {
+        Acerto a = new Acerto(LocalDate.parse(data, DateTimeFormatter.ISO_DATE),valor, tipo, motivo);
         Assert.assertEquals(resultado,a.insere());
     }
-
-    
-    
 }

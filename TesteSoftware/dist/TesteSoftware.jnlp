@@ -8,8 +8,9 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="TesteSoftware.jar" size="7496" download="eager" />
-    <jar href="lib\postgresql-9.4.1209.jar" size="678049" download="eager" />
+    <jar href="TesteSoftware.jar" size="35129" download="eager" />
+    <jar href="lib/junitparams-1.0.2.jar" size="25234" download="eager" />
+    <jar href="lib/postgresql-9.4.1209.jar" size="678049" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="TesteSoftware" >
     <param name="requiredFXVersion" value="8.0+"/>

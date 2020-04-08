@@ -22,7 +22,7 @@ public class Banco
     static public boolean conectar()
     {
        con=new Conexao();
-       return con.conectar("jdbc:postgresql://localhost/","DBteste","postgres","postgres123");
+       return con.conectar("jdbc:postgresql://arjuna.db.elephantsql.com/","mpdqypsq","mpdqypsq","u-HCiJa79OEO-WU4vUv0xpQOxOZXFCC3");
     }   
     
     public static boolean criarBD(String BD)
