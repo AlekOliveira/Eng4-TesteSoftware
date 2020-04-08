@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.21
 -- Dumped by pg_dump version 9.5.21
 
--- Started on 2020-04-08 16:16:18
+-- Started on 2020-04-08 17:13:29
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -40,19 +40,19 @@ SET default_with_oids = false;
 
 --
 -- TOC entry 181 (class 1259 OID 16447)
--- Name: Acerto; Type: TABLE; Schema: public; Owner: postgres
+-- Name: acerto; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public."Acerto" (
+CREATE TABLE public.acerto (
     "AceCod" integer NOT NULL,
     data date,
     valor numeric(8,2),
-    motivo character varying(200)[],
-    tipo boolean
+    tipo boolean,
+    motivo character varying(200)
 );
 
 
-ALTER TABLE public."Acerto" OWNER TO postgres;
+ALTER TABLE public.acerto OWNER TO postgres;
 
 --
 -- TOC entry 182 (class 1259 OID 16453)
@@ -75,15 +75,15 @@ ALTER TABLE public."Acerto_AceCod_seq" OWNER TO postgres;
 -- Name: Acerto_AceCod_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public."Acerto_AceCod_seq" OWNED BY public."Acerto"."AceCod";
+ALTER SEQUENCE public."Acerto_AceCod_seq" OWNED BY public.acerto."AceCod";
 
 
 --
 -- TOC entry 183 (class 1259 OID 16455)
--- Name: Caixa; Type: TABLE; Schema: public; Owner: postgres
+-- Name: caixa; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public."Caixa" (
+CREATE TABLE public.caixa (
     "CodCaixa" integer NOT NULL,
     "SaldoI" numeric(8,2),
     "SaldoF" numeric(8,2),
@@ -91,7 +91,7 @@ CREATE TABLE public."Caixa" (
 );
 
 
-ALTER TABLE public."Caixa" OWNER TO postgres;
+ALTER TABLE public.caixa OWNER TO postgres;
 
 --
 -- TOC entry 184 (class 1259 OID 16458)
@@ -114,15 +114,15 @@ ALTER TABLE public."Caixa_CodCaixa_seq" OWNER TO postgres;
 -- Name: Caixa_CodCaixa_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public."Caixa_CodCaixa_seq" OWNED BY public."Caixa"."CodCaixa";
+ALTER SEQUENCE public."Caixa_CodCaixa_seq" OWNED BY public.caixa."CodCaixa";
 
 
 --
 -- TOC entry 185 (class 1259 OID 16460)
--- Name: MovCaixa; Type: TABLE; Schema: public; Owner: postgres
+-- Name: movcaixa; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public."MovCaixa" (
+CREATE TABLE public.movcaixa (
     "CodCaixa" integer NOT NULL,
     valor numeric(8,2),
     "CodMov" integer NOT NULL,
@@ -131,7 +131,7 @@ CREATE TABLE public."MovCaixa" (
 );
 
 
-ALTER TABLE public."MovCaixa" OWNER TO postgres;
+ALTER TABLE public.movcaixa OWNER TO postgres;
 
 --
 -- TOC entry 186 (class 1259 OID 16463)
@@ -154,7 +154,7 @@ ALTER TABLE public."MovCaixa_CodMov_seq" OWNER TO postgres;
 -- Name: MovCaixa_CodMov_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public."MovCaixa_CodMov_seq" OWNED BY public."MovCaixa"."CodMov";
+ALTER SEQUENCE public."MovCaixa_CodMov_seq" OWNED BY public.movcaixa."CodMov";
 
 
 --
@@ -162,7 +162,7 @@ ALTER SEQUENCE public."MovCaixa_CodMov_seq" OWNED BY public."MovCaixa"."CodMov";
 -- Name: AceCod; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public."Acerto" ALTER COLUMN "AceCod" SET DEFAULT nextval('public."Acerto_AceCod_seq"'::regclass);
+ALTER TABLE ONLY public.acerto ALTER COLUMN "AceCod" SET DEFAULT nextval('public."Acerto_AceCod_seq"'::regclass);
 
 
 --
@@ -170,7 +170,7 @@ ALTER TABLE ONLY public."Acerto" ALTER COLUMN "AceCod" SET DEFAULT nextval('publ
 -- Name: CodCaixa; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public."Caixa" ALTER COLUMN "CodCaixa" SET DEFAULT nextval('public."Caixa_CodCaixa_seq"'::regclass);
+ALTER TABLE ONLY public.caixa ALTER COLUMN "CodCaixa" SET DEFAULT nextval('public."Caixa_CodCaixa_seq"'::regclass);
 
 
 --
@@ -178,17 +178,7 @@ ALTER TABLE ONLY public."Caixa" ALTER COLUMN "CodCaixa" SET DEFAULT nextval('pub
 -- Name: CodMov; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public."MovCaixa" ALTER COLUMN "CodMov" SET DEFAULT nextval('public."MovCaixa_CodMov_seq"'::regclass);
-
-
---
--- TOC entry 2117 (class 0 OID 16447)
--- Dependencies: 181
--- Data for Name: Acerto; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Acerto" ("AceCod", data, valor, motivo, tipo) FROM stdin;
-\.
+ALTER TABLE ONLY public.movcaixa ALTER COLUMN "CodMov" SET DEFAULT nextval('public."MovCaixa_CodMov_seq"'::regclass);
 
 
 --
@@ -197,17 +187,7 @@ COPY public."Acerto" ("AceCod", data, valor, motivo, tipo) FROM stdin;
 -- Name: Acerto_AceCod_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Acerto_AceCod_seq"', 1, false);
-
-
---
--- TOC entry 2119 (class 0 OID 16455)
--- Dependencies: 183
--- Data for Name: Caixa; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."Caixa" ("CodCaixa", "SaldoI", "SaldoF", "Status") FROM stdin;
-\.
+SELECT pg_catalog.setval('public."Acerto_AceCod_seq"', 1, true);
 
 
 --
@@ -220,16 +200,6 @@ SELECT pg_catalog.setval('public."Caixa_CodCaixa_seq"', 1, false);
 
 
 --
--- TOC entry 2121 (class 0 OID 16460)
--- Dependencies: 185
--- Data for Name: MovCaixa; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."MovCaixa" ("CodCaixa", valor, "CodMov", "AceCod", tipo) FROM stdin;
-\.
-
-
---
 -- TOC entry 2137 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: MovCaixa_CodMov_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
@@ -239,11 +209,42 @@ SELECT pg_catalog.setval('public."MovCaixa_CodMov_seq"', 1, false);
 
 
 --
+-- TOC entry 2117 (class 0 OID 16447)
+-- Dependencies: 181
+-- Data for Name: acerto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.acerto ("AceCod", data, valor, tipo, motivo) FROM stdin;
+1	2019-04-08	150.50	f	Fralda das Crianças
+\.
+
+
+--
+-- TOC entry 2119 (class 0 OID 16455)
+-- Dependencies: 183
+-- Data for Name: caixa; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.caixa ("CodCaixa", "SaldoI", "SaldoF", "Status") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2121 (class 0 OID 16460)
+-- Dependencies: 185
+-- Data for Name: movcaixa; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.movcaixa ("CodCaixa", valor, "CodMov", "AceCod", tipo) FROM stdin;
+\.
+
+
+--
 -- TOC entry 1998 (class 2606 OID 16469)
 -- Name: pkAcerto; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public."Acerto"
+ALTER TABLE ONLY public.acerto
     ADD CONSTRAINT "pkAcerto" PRIMARY KEY ("AceCod");
 
 
@@ -252,7 +253,7 @@ ALTER TABLE ONLY public."Acerto"
 -- Name: pkCaixa; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public."Caixa"
+ALTER TABLE ONLY public.caixa
     ADD CONSTRAINT "pkCaixa" PRIMARY KEY ("CodCaixa");
 
 
@@ -261,7 +262,7 @@ ALTER TABLE ONLY public."Caixa"
 -- Name: pkMovCaixa; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public."MovCaixa"
+ALTER TABLE ONLY public.movcaixa
     ADD CONSTRAINT "pkMovCaixa" PRIMARY KEY ("CodMov");
 
 
@@ -277,7 +278,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2020-04-08 16:16:18
+-- Completed on 2020-04-08 17:13:29
 
 --
 -- PostgreSQL database dump complete
