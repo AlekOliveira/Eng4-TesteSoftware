@@ -5,6 +5,8 @@
  */
 
 import entidades.JakenPo;
+import junitparams.FileParameters;
+import junitparams.JUnitParamsRunner;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -12,11 +14,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 
 /**
  *
  * @author Aluno
  */
+
+@RunWith(JUnitParamsRunner.class)
 
 public class TestJakenPo {
     
@@ -41,7 +46,7 @@ public class TestJakenPo {
     public void tearDown() {
     }
         
-    @Test
+    /*@Test
     public void T_REsultado()
     {
         JakenPo jp = new JakenPo();
@@ -52,6 +57,18 @@ public class TestJakenPo {
         //cria o obj e consulta no banco 
         //executa o assert equals 
         //faz rollback        
+    }*/
+    
+    @Test
+    @FileParameters("C:\\Users\\Alexandre\\Documents\\NetBeansProjects\\Eng4-TesteSoftware\\TesteSoftware\\test\\csvExemplo.csv")
+    public void T_REsultado(String s1, String s2, int res)
+    {
+        //tesoura, papel, 1
+       JakenPo jp = new JakenPo();
+       int resultado = jp.Resultado(s1, s2);
+       Assert.assertEquals(res, resultado);
+        
+        
     }
     
   
